@@ -1,0 +1,16 @@
+#+TITLE: TidalDesk
+
+* tidaldesk.el
+  #+begin_src elisp
+  (expand-file-name (concat "~/../.." "/AppData/Local/SuperCollider/downloaded-quarks/Dirt-Samples"))
+  #+end_src
+
+  #+RESULTS:
+  : c:/Users/a0582/AppData/Local/SuperCollider/downloaded-quarks/Dirt-Samples
+
+  #+begin_src elisp
+ (read-file-name "SC File: " nil nil ".+*\.scd$")
+  #+end_src
+
+  #+RESULTS:
+  : c:/Users/a0582/tidaldesk/boot.scd
