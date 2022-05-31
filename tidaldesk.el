@@ -24,18 +24,20 @@
 ;;
 (defun tidaldesk-execute-scide-with-file (file)
   (interactive "Open SuperCollider IDE: ")
-  (shell-command
+  (async-shell-command
    (format "scide %s &" (shell-quote-argument (expand-file-name file)))
-   "*SC IDE*"))
+    "*Shell Command Output*"
+    ))
 
-(defun tidaldesk-open-scide ()
-  (interactive "Open SuperCollider IDE: ")
-  (shell-command (format "scide &")
-		 "*SC IDE*"))
+;; (defun tidaldesk-open-scide ()
+;;   (interactive "Open SuperCollider IDE: ")
+;;   (shell-command (format "scide &")
+;; 		 ;;"*SC IDE*"
+;; 		 ))
 
 (defun tidaldesk-open-scide-with-file ()
   (interactive)
-  (tidaldesk-execute-scide-with-file (read-file-name "SCD File: ")))
+  (tidaldesk-execute-scide-with-file (read-file-name "SCD File: " tidaldesk-dir)))
 
 ;; 
 ;; Dirt-Samples neotree setting
@@ -68,35 +70,33 @@ The description of ARG is in `neo-buffer--execute'."
 ;;
 ;; Org-babel execute tidalcycles
 ;;
-(defun org-babel-execute:tidal (body params) "test"
+(defun org-babel-execute:tidal (body params)
   (interactive)
-  ;; TODO: tidalを起動していない場合は起動する(yes or noもほしい)
   (tidal-send-string ":{")
   (tidal-send-string body)
   (tidal-send-string ":}")
-  "ok")
+  (tidal-see-output))
 
 ;;
 ;; Hydra
 ;;
-;; (bind-key
-;;  "<f12>"
-;;  (defhydra hydra-tidaldesk (:color pink :hint nil)
-;;    "
-;; _f12_: to-top"
-;;      ("<f12>" tidaldesk-open-desk "to-desk")))
-
-
 (defhydra hydra-outline (:color pink :hint nil :exit t)
   "
-^Hide^
+^TidalDesk^  ^TidalCycles^ ^SuperDirt^  ^SuperCollider^
 ^^^^^^------------------------------------------------------
-_t_: todesk
-
+_t_: todesk  _e_: start-tidal  _d_: dirt-samples  _s_: scide
 "
-  ("t"  tidaldesk-open-desk))
+  ;; TidalDesk
+  ("t" tidaldesk-open-desk)
+  ;; TidalCycles
+  ("e" tidal-start-haskell)
+  ;; SuperCollider
+  ("s" tidaldesk-open-scide-with-file)
+  ;; Super-Dirt
+  ("d" tidaldesk-dirt-samples-toggle))
 
-(global-set-key (kbd "<f12>") 'hydra-outline/body) ; by example
+(global-set-key (kbd "<f12>") 'hydra-outline/body)
+
 
 (provide 'tidaldesk)
 
