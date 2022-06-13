@@ -1,3 +1,29 @@
-d1$s "bd"
+import qualified Sound.Tidal.Tempo as T
+
+resetCyclesTo n = T.changeTempo (sTempoMV tidal) (\t tempo -> tempo {T.atTime = t, T.atCycle = n})
+
+do
+  d1
+    $ stack[
+      -- kick
+      s "house:0*4",
+      -- hh
+      seqPLoop[
+          (0,3,s "hc*8"),
+          (3,4, "hc*4 hc*5")
+          ],
+      --
+      s "house:1",
+      --
+      s "~ house*2" #n 2,
+      --
+      every 2 (#gain 0.3) $ every 4 (fast 2) $ s "house:3(3,5)",
+      --
+      s "house:5*16",
+      s "~ house:6*9 ~",
+      s "house:7"
+    ]
+      
+
 
 hush

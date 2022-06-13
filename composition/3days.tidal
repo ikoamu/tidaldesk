@@ -1,0 +1,56 @@
+d1 $ seqPLoop[
+  -- fill-in
+  (0, 0, s "808cy"),
+  -- kick
+  (0, 4, "808bd*4"),
+  -- snare
+  (0, 3, s "[~ 808sd]*2"),
+  (3, 4, s "[~ 808sd] 808sd*2"),
+  -- hc
+  (0, 4, s "808hc*8" )
+] -- #gain 0
+
+d1 silence
+
+-- bass
+d2 $ slow 4 $ stack[
+  -- base
+  n "f'maj*8 g'maj*8 e'min*8 a'min*8" # s "supersquare"
+    # gain 0.5
+    # octave 3,
+  -- chord
+  n "f'maj g'maj e'min a'min" # s "supersquare"
+    # sustain 2
+    # gain 0.6
+    # octave 5
+  ]
+
+d2 silence
+
+-- melody
+d3
+  $ whenmod 16 15 (>| note (scale "major" "8 7 5 ~ 8 9 7 5"))
+  $ whenmod 4 3 (>| note (scale "major" "8 7 5 4"))
+  $ whenmod 2 1 (>| note (scale "major" "5 6 5 _"))
+  $ note (scale "major" "5 4 5 _")
+  # sound "superfm"
+  # gain 0.7
+  # delay 0.5
+
+d3 silence
+
+
+-- glitch
+d4 $ gain "{1 1 0 1/2 1 0 0 1}%8" #s "glitch:4*16"
+
+d4 silence
+
+
+-- cp
+d5 $ seqPLoop[
+  (0, 15, s "cp" #gain 0 ),
+  (7, 8, s "~ cp" #gain 0.8),
+  (15, 16, s "cp*2" #gain 0.8)]
+
+d5 silence
+

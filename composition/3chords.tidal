@@ -1,0 +1,33 @@
+import qualified Sound.Tidal.Tempo as T
+
+resetCyclesTo n = T.changeTempo (sTempoMV tidal) (\t tempo -> tempo {T.atTime = t, T.atCycle = n})
+
+do
+  resetCyclesTo (-0.05)
+  d2
+    $ stack[
+      s "808bd*4"
+           ]
+  d1
+    $ seqPLoop [
+      -- intro
+      (
+        0, 4,
+        slow 4 $ n "c'maj a'min d'min g'maj"
+      ),
+      -- a
+      (
+        4, 12,
+        slow 8 $ n "c'maj c'maj f'maj f'maj e'min e'min d'min g'maj"
+      ),
+      -- b
+      (
+        12, 16,
+        slow 4 $ n "a'min f'maj g'maj c'maj"
+      ),
+      -- サビ
+      (
+        16, 20,
+        slow 4 $ n "f'maj g'maj e'min a'min"
+      )
+    ] #s "superpiano" #gain 1.0 #sustain 2

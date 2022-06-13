@@ -1,17 +1,45 @@
 #+TITLE: TidalDesk
 
-* TidalCyycles
+* TidalCycles
 ** Links
    - https://tidalcycles.org/docs/
    - https://yoppa.org/mit-sound20
+* tidal/docs
+** DOING [[file:tidal/docs/whenmod.org][whenmod]]
+** TODO [[file:tidal/docs/fast.org][fast]]
 
 * tidaldesk.el
-** TODO いろいろかく
+** やりたい設定
+*** TODO deskに移動時にtidal                                           :init:
+*** TODO deskに移動時にSCを自動で起動                                  :init:
+    scdファイルは選べなくてもいい
+    
 
 ** org-mode
    #+begin_src tidal
-     once $ s "bd"
+     hush
+
+  d4 $ whenmod 16 8 (>| note (scale "chromatic" (cat [ "8 _ _ _  _ _ _ _ _  _ _ _ _  6 _ 8 _",
+                                                    "15 _ _ _  8 _ _ _ _  6 _ 8 _  _ _ 8 _",
+                                                     "8 _ _ _  _ _ _ _ _  _ _ _ _  8 _ 15 _",
+                                                    "13 _ 11 _  11 _ 15 _  13 _ 11 _  13 _ _ _  "])))
+  $note (scale "chromatic" "8 <8 _> 8 8  8 3 3 1  3 1 _ ~  [-1|~] _ [-1|~] _")
+  #s "superfm"
    #+end_src
 
+   #+RESULTS:
+   : 256
 
+* SuperCollider
+** ERROR: failed to open UDP socket: address in use.
+   #+begin_src sc
+   Server.killAll // => SUCCESS: The process "scsynth.exe" with PID 18112 has been terminated.
+   #+end_src
    
+
+   #+begin_src tidal
+   "2 3" + "1 2 3"
+   #+end_src
+
+   #+RESULTS:
+   : 30228

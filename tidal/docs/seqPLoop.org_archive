@@ -1,0 +1,26 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file c:/Users/a0582/tidaldesk/tidal/docs/seqPLoop.org
+
+
+* seqPLoop
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2022-06-04 土 00:10
+  :ARCHIVE_FILE: c:/Users/a0582/tidaldesk/tidal/docs/seqPLoop.org
+  :ARCHIVE_CATEGORY: seqPLoop
+  :END:
+  https://tidalcycles.org/docs/patternlib/tour/composition/#seqploop
+  #+begin_example tidal
+    Type: seqPLoop :: [(Time, Time, Pattern a)] -> Pattern a
+  #+end_example
+
+  seqPLoopは、シーケンスを意図通りループさせたいときに使用します。
+  DAWのようにトラックの抜き差しをしたい場合に便利です。
+
+  #+begin_src tidal
+    d1 $ seqPLoop[(0,3,s "hh*8"), (3,4,s "hh*4 ~ [hh*2, hh(3, 5)")]
+  #+end_src
+
+  #+RESULTS:
+  : 11028

@@ -1,0 +1,6 @@
+#+begin_src tidal
+  d1 $ s "hh*8"
+#+end_src
+
+#+RESULTS:
+: 280

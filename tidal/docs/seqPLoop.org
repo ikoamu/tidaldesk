@@ -1,0 +1,39 @@
+* seqPLoop
+  https://tidalcycles.org/docs/patternlib/tour/composition/#seqploop
+  #+begin_example tidal
+    Type: seqPLoop :: [(Time, Time, Pattern a)] -> Pattern a
+  #+end_example
+
+  #+begin_src tidal
+    d1 $ seqPLoop[
+      (0,4, "cp"),
+      (0,3,s "hh*8"),
+      (3,4,s "hh*4 hh*2 ~ hh")]
+  #+end_src
+
+  #+RESULTS:
+  : 1023
+
+  [[file:stack.org][stack]]の中でseqPLoopを利用することもできる
+  #+begin_src tidal
+    d1 $ stack [
+	-- drums
+	seqPLoop [
+	(0, 2, s "[bd*2] hh bd sn:8"),
+	(1, 3, s "[hh*4] bd bd sn:8"),
+	(2, 4, s "bd bd sn:8 sn:8"),
+	(4, 5, s "bd sn:8 [bd*2] sn:8")
+	],
+        -- bass
+	seqPLoop [
+	(0, 2, s "jvbass(3,8)"),
+	(2, 4, s "jvbass(5,8)"),
+	(4, 5, s "jvbass*4" # speed 1.1)
+	]
+    ]
+  #+end_src
+
+  #+RESULTS:
+  : 1030
+
+

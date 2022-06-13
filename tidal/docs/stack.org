@@ -1,0 +1,30 @@
+* stack
+  #+begin_example tidal
+    Type: stack :: [Pattern a] -> Pattern a
+  #+end_example
+
+  stackはパターンのリストを取得し、それらをレイヤー化することで新しいパターンに結合します。
+  リスト内のすべてのパターンを同時に効果的に再生します。
+
+  #+begin_src tidal
+    d1 $ stack [ 
+      sound "bd bd*2", 
+      sound "hh*2 [sn cp] cp future*4", 
+      sound "arpy" +| n "0 .. 15"
+    ]
+  #+end_src
+
+  #+RESULTS:
+  : 1037
+
+  これは、ファンクションまたはシンセコントロールパターンを一度に複数のパターンに適用する場合に特に便利です。
+  #+begin_src tidal
+    d1 $ whenmod 5 3 (striate 3) $ stack [ 
+      sound "bd bd*2", 
+      sound "hh*2 [sn cp] cp future*4", 
+      sound "arpy" +| n "0 .. 15"
+    ] # speed "[[1 0.8], [1.5 2]*2]/3"
+  #+end_src
+
+  #+RESULTS:
+  : 1056
