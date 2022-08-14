@@ -1,0 +1,27 @@
+-- mini notation 2
+
+--  [cp      ][hh|hh|hh]
+d1 $ s "cp hh*3"
+
+
+-- [cp          ][cp|hh][cp|hh][cp|hh]
+d1 $ s "cp [cp hh]*3"
+
+-- 整数じゃなくてもOK
+d1 $ s "cp [cp hh]*1.5"
+
+d1 $ s "[cp [cp hh]*1.5]*2"
+
+
+-- !だと等分
+-- *3: [cp      ][hh|hh|hh]
+-- !3: [cp  |hh  |hh  |hh  ]
+
+d1 $ s "cp hh*3"
+
+d1 $ s "cp hh!3"
+
+
+-- slow 2 = /2
+
+hush

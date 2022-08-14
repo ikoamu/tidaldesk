@@ -4,26 +4,44 @@ resetCyclesTo n = T.changeTempo (sTempoMV tidal) (\t tempo -> tempo {T.atTime = 
 
 do
   d1
-    $ stack[
-      -- kick
-      s "house:0*4",
-      -- hh
-      seqPLoop[
-          (0,3,s "hc*8"),
-          (3,4, "hc*4 hc*5")
-          ],
-      --
-      s "house:1",
-      --
-      s "~ house*2" #n 2,
-      --
-      every 2 (#gain 0.3) $ every 4 (fast 2) $ s "house:3(3,5)",
-      --
-      s "house:5*16",
-      s "~ house:6*9 ~",
-      s "house:7"
-    ]
-      
-
+    $ whenmod 2 1 (>| note (scale "major" "5 _ 5 6 8 ~"))
+    $ note (scale "major" "5 _ 5 _ 8 ~")
+    # sound "superfm"
+    # gain 0.0
+    # delay 1
+  d2
+    $ s "hh" # gain 0.8
+  d3
+    $ s "~ kicklinn"
+  d4
+    $ fix (# size 2) (n (scale "major" "0"))
+    $ whenmod 16 15 (>| note (scale "major" "1 1 1 0  _ 1 0 1 1 0 _ 0"))
+    $ whenmod 4 3 (>| note   (scale "major" "0 1 ~ 0  _ 2 0 1 ~ 0 _ 2"))
+    $ whenmod 2 1 (>| note   (scale "major" "0 _ 1 2  0 ~"))
+    $ note                   (scale "major" "0 _ 0 2 1 ~")
+    # sound "kurt"
+    # gain 0.0
+    # delay 0.2 
+  d5
+    $ whenmod 2 1 (>| note   (scale "major" "9 9 8 7 6 ~ 8 8"))
+    $ note                   (scale "major" "8 8 ~ 7 4 _ 5 ~")
+    # sound "notes"
+    # gain 0.7
+    # delay 0.3
+    # size 0.5
+    # room 0.5
+    # shape 0.1
+  d6
+    $ whenmod 16 15 (>| note (scale "major" "8 6 9 7 6 ~"))
+    $ whenmod 4 3 (>| note   (scale "major" "7 5 ~ 6 7  ~"))
+    $ whenmod 2 1 (>| note   (scale "major" "9 ~ 8 7 5  ~"))
+    $ note                   (scale "major" "8 8 ~ 7 5  ~")
+    # sound "kurt"
+    # gain 0.7
+    # delay 0.7
+    # room 0.5
+    # shape 0.1
 
 hush
+
+panic

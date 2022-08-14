@@ -1,0 +1,48 @@
+setcps(112/60/4)
+
+-- d1 $ stack [
+--   s "bd(2,16)" # n 1,
+--   s "hc*8",
+--   s "{~ sn}%4" # n 2,
+--   s "glitch:6(3,5)"
+-- ]
+
+d1 $ stack [
+--  s "bd(5,14)" # n 2
+--  s "[[~ 808cy]*3 ~ [<808cy:1 808cy:2>]*2]*2" # n "1 2 0 2 3" # legato 0.3
+--  s "{[hc*2 hc*4]*2}%4 [hc(3,5) hc*2]"
+--  s "{~ sn}%12" # n 2
+--  s "glitch:6(3,5)"
+  s "sn*14",
+  s "{~ bd}%8"
+]
+
+
+hush
+
+d2 $ stack [
+    whenmod 16 15 (>| note (scale "chromatic" "{9 9 12 13 13 11 9 11 7 9 11 12 15 16 11 9}%16"))
+    $ whenmod 4 3 (>| note (scale "chromatic" "{9 9 12 <7 ~>  10  13 1 9 10 _  12 15 13 16  <11 10> 9}%14"))
+    $ whenmod 2 1 (>| note (scale "chromatic" "7 9 10 7  9 10 7 9  12 10 15 16  11 9"))
+    $ note               (scale "chromatic" "{7 9 10 7  9 10 7 9  12 7 9 6 10 8}%14")
+    # s "superfm"
+--  # room 0.6
+--  # sz 0.5
+ -- # delay 0.2
+  # lock 1
+]
+
+d3 $ stack [
+  s "superbass"
+]
+
+
+hush
+
+d3 $ fast 2 $ s "flick(5, 13)" # n (irand 16) # legato 0.3
+
+d4 $ stack [
+  note (scale "1") # s "gab"
+]
+
+hush

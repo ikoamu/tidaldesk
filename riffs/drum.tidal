@@ -1,0 +1,14 @@
+do
+  setI "i" $ 0    -- i = hihat
+  setI "s" $ 10   -- s = snare
+  setI "k" $ 4    -- k = kick
+  setS "f" $ "ab" -- f = kit or folder
+  
+setcps (150/60/4)
+
+d1 $ stack [
+   (slow 2 $ n "^i ~ ^i ~   ^i ~ ^i ^i   ^i ~ ^i ~   ^i ~ ^i ~   ^i ~ ^i ~   ^i ~ ^i ~   ^i ~ ^i ~   ^i ~ ^i ~ " # s "^f"),
+   (slow 2 $ n "~ ^s ~ ~   ^s ~ ~ ~   ~ ^s ~ ~   ~ ~ ^s ~   ~ ~ ~ ~   ~ ~ ^s ~  ~ ^s ~ ~  ^s ~ ~ ~ " # s "^f"),
+   (slow 2 $ n "^k ~ ~ ~   ~ ~ ~ ~   ~ ~ ^k ~   ~ ~ ~ ~  ~ ~ ^k ~   ~ ~ ~ ~   ~ ~ ^k ~   ~ ~ ~ ~ " # s "^f")
+]
+

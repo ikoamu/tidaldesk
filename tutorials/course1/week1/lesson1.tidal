@@ -1,0 +1,16 @@
+-- lesson1: Tidal Interaction
+-- https://tidalcycles.org/docs/patternlib/tutorials/course1#lesson-1-tidal-interaction
+
+-- bd: bass drum(kick drum)
+-- sd: snare drum
+d1 $ sound "bd sd"
+
+d1 silence
+
+-- arpy
+d2 $ sound "arpy"
+  # crush 3
+
+d2 silence
+
+hush

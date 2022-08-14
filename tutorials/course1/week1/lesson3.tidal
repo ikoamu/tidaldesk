@@ -1,0 +1,22 @@
+-- mino notation
+-- https://www.youtube.com/watch?v=nBpCJcduMso
+
+-- lesson2のサンプルを入れている前提の動画になっている
+
+d1 $ sound "bd sn cp sn"
+
+d2 $ s "cp"
+
+d3 $ sound "cp:2"
+
+d4 $ n "0 3 5 2" # s "bd"
+
+d5 $ sound "bd:0 bd:3 bd:5 bd:2"
+
+d4 $ n "0 3 5 2" # s "bd"
+
+-- subseq
+d5 $ n "0 3 [4 4] 2" # s "bd"
+
+
+hush
